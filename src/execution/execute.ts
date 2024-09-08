@@ -115,7 +115,21 @@ export interface ExecutionContext {
   typeResolver: GraphQLTypeResolver<any, any>;
   subscribeFieldResolver: GraphQLFieldResolver<any, any>;
   errors: Array<GraphQLError>;
+  options?: ExecutionOptions;
 }
+
+export interface ExecutionOptions {
+  /**
+   *
+   * Bubbles null value to nearest nullable field when
+   * child non-nullable field returns null.
+   *
+   * Normally an "Cannot return null for non-nullable field" error is thrown.
+   * When {@link bubbleNull} is true, that error is ignored.
+   */
+  bubbleNull?: boolean;
+}
+
 
 /**
  * The result of GraphQL execution.
@@ -490,7 +504,7 @@ function executeFields(
  * calling its resolve function, then calls completeValue to complete promises,
  * serialize scalars, or execute the sub-selection-set for objects.
  */
-function executeField(
+export function executeField(
   exeContext: ExecutionContext,
   parentType: GraphQLObjectType,
   source: unknown,
@@ -650,7 +664,7 @@ function completeValue(
       path,
       result,
     );
-    if (completed === null) {
+    if (completed === null && exeContext.options?.bubbleNull !== true) {
       throw new Error(
         `Cannot return null for non-nullable field ${info.parentType.name}.${info.fieldName}.`,
       );

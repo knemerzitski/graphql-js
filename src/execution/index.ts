@@ -2,6 +2,7 @@ export { pathToArray as responsePathAsArray } from '../jsutils/Path';
 
 export {
   execute,
+  executeField,
   executeSync,
   defaultFieldResolver,
   defaultTypeResolver,
@@ -10,6 +11,7 @@ export {
 export type {
   ExecutionArgs,
   ExecutionResult,
+  ExecutionOptions,
   FormattedExecutionResult,
 } from './execute';
 

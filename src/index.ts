@@ -315,6 +315,7 @@ export type {
 // Execute GraphQL queries.
 export {
   execute,
+  executeField,
   executeSync,
   defaultFieldResolver,
   defaultTypeResolver,
@@ -329,6 +330,7 @@ export {
 export type {
   ExecutionArgs,
   ExecutionResult,
+  ExecutionOptions,
   FormattedExecutionResult,
 } from './execution/index';
 
