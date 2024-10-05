@@ -1,6 +1,7 @@
 {
   "name": "@knemerzitski/graphql",
   "version": "16.9.1",
+  "versionUpstream": "16.9.0",
   "description": "A Query Language and Runtime which can target any service.",
   "license": "MIT",
   "private": true,
